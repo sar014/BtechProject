@@ -142,7 +142,7 @@ public class Maze : MonoBehaviour
                     {
                         manager.InstantiateWeapons(x,z);
                     }
-                    else if (Random.Range(0,100)<10)
+                    else if (Random.Range(0,100)<30)
                     {
                         manager.InstantiateLamps(x,z);
                     }

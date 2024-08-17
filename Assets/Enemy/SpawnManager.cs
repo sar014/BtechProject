@@ -119,18 +119,18 @@ public class SpawnManager : MonoBehaviour
         if (obj.map[i, j] == 0) 
         {
             Vector3 weaponPosition = new Vector3(i * obj.scale, 2, j * obj.scale);
-
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(weaponPosition, out hit, 5f, NavMesh.AllAreas))
-            {
-                GameObject weaponInstance = Instantiate(wallLamp, weaponPosition, Quaternion.identity, mazeParent.transform);
-                weaponInstance.transform.position = hit.position;
-                weaponPosList.Add(weaponPosition);
-            }
-            else
-            {
-                Debug.Log($"NavMesh.SamplePosition failed for position: {weaponPosition}");
-            }
+            GameObject weaponInstance = Instantiate(wallLamp, weaponPosition, Quaternion.identity, mazeParent.transform);
+            // NavMeshHit hit;
+            // if (NavMesh.SamplePosition(weaponPosition, out hit, 5f, NavMesh.AllAreas))
+            // {
+            //     GameObject weaponInstance = Instantiate(wallLamp, weaponPosition, Quaternion.identity, mazeParent.transform);
+            //     weaponInstance.transform.position = hit.position;
+            //     weaponPosList.Add(weaponPosition);
+            // }
+            // else
+            // {
+            //     Debug.Log($"NavMesh.SamplePosition failed for position: {weaponPosition}");
+            // }
         }
     }
 }
