@@ -4,28 +4,18 @@ using UnityEngine;
 
 public class LampPos : MonoBehaviour
 {
+
+
     public int numberOfRays = 8;        // Number of raycasts to shoot
     public float rayDistance = 5.0f;    // Max distance for each raycast
     public LayerMask wallLayerMask;     // Layer for walls
     public Vector3 offset;     
 
-    private void Start() {
+    private void Start() 
+    {
+
         StartCoroutine(AttachToNearestWall());
     }
-    
-    // // Update is called once per frame
-    // void Update()
-    // {
-    //     if(Physics.Raycast(transform.position, transform.forward,out RaycastHit hitInfo,20f))
-    //     {
-    //         Debug.Log("Hit");
-    //         Debug.DrawRay(transform.position,transform.forward * hitInfo.distance,Color.red);
-    //     }
-    //     else
-    //     {
-    //         Debug.Log("Nothiing");
-    //     }
-    // }
 
     IEnumerator AttachToNearestWall()
     {

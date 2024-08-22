@@ -59,6 +59,8 @@ public class Maze : MonoBehaviour
     public int scale = 6;
     GameObject wall;
     public SpawnManager manager;
+    public Material wallMaterial;
+    public Material roofMaterial;
 
     // Start is called before the first frame update
     void Awake()
@@ -77,6 +79,9 @@ public class Maze : MonoBehaviour
         GameObject cover = GameObject.CreatePrimitive(PrimitiveType.Cube);
         cover.transform.localScale = new Vector3(width * scale,0.5f,depth*scale);
         cover.transform.localPosition = new Vector3(60f,3.25f,-28f);
+
+        Renderer renderer = cover.GetComponent<MeshRenderer>();
+        renderer.material = roofMaterial;
     }
     void InitialiseMap()
     {
@@ -129,6 +134,10 @@ public class Maze : MonoBehaviour
                     wall.transform.localScale = new Vector3(scale, scale, scale);
                     wall.transform.position = pos;
                     wall.layer = 7;
+
+                    //Setting the material
+                    Renderer renderer = wall.GetComponent<MeshRenderer>();
+                    renderer.material = wallMaterial;
                     
                     wall.transform.SetParent(mazeParent.transform);
                 }
@@ -142,7 +151,7 @@ public class Maze : MonoBehaviour
                     {
                         manager.InstantiateWeapons(x,z);
                     }
-                    else if (Random.Range(0,100)<30)
+                    else if (Random.Range(0,100)<25)
                     {
                         manager.InstantiateLamps(x,z);
                     }
