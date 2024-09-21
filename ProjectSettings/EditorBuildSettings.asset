@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Dnk_Dev/Map_Hosp1.unity
     guid: b6ca1756db6b14945b4116ce8880ae82
+  - enabled: 1
+    path: Assets/MainPage/MainPage.unity
+    guid: 241d7f2ec33222947bae88dfa3128dc4
+  - enabled: 1
+    path: Assets/RulesPage/RulesPage.unity
+    guid: fae37be746e5dca4c8b01d57aefbd089
   m_configObjects: {}
