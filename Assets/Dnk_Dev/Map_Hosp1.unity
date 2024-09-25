@@ -22515,7 +22515,7 @@ MonoBehaviour:
   hasEntered: 0
   scale: 6
   manager: {fileID: 1739740871}
-  wallMaterial: {fileID: 2100000, guid: 0fd919483b48f0a4c8dea7c813c5a2ac, type: 2}
+  wallMaterial: {fileID: 2100000, guid: 33dc44e1336e2bf43aaf2e77ed75edf2, type: 2}
   roofMaterial: {fileID: 2100000, guid: 24bad2a9043dd3741a4fe33da43373b8, type: 2}
 --- !u!114 &1739740870
 MonoBehaviour:
