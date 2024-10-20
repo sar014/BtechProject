@@ -13,6 +13,7 @@ public class HighlightingPathway : MonoBehaviour
     float time = 0f;
     GameObject navMeshSurfaceObject;
     NavMeshSurface navMeshSurface;
+    int HintCount;
 
     void Start()
     {
@@ -45,22 +46,26 @@ public class HighlightingPathway : MonoBehaviour
 
     public void CalculateAndVisualizePath()
     {
-        lineRenderer.enabled = true;
-        NavMeshPath path = new NavMeshPath();
-
-        //Gets the nav mesh surface from the Maze game object
-        navMeshSurface = navMeshSurfaceObject.GetComponent<NavMeshSurface>();
-        navMeshSurface.BuildNavMesh();
-
-        if (navMeshAgent.CalculatePath(target, path))
+        if(HintCount<=3)
         {
+            lineRenderer.enabled = true;
+            NavMeshPath path = new NavMeshPath();
 
-            // Debug.DrawRay(this.transform.position,target,Color.red,10f);
-            VisualizePath(path);
-        }
-        else
-        {
-            Debug.Log("Error");
+            //Gets the nav mesh surface from the Maze game object
+            navMeshSurface = navMeshSurfaceObject.GetComponent<NavMeshSurface>();
+            navMeshSurface.BuildNavMesh();
+
+            if (navMeshAgent.CalculatePath(target, path))
+            {
+
+                // Debug.DrawRay(this.transform.position,target,Color.red,10f);
+                VisualizePath(path);
+            }
+            else
+            {
+                Debug.Log("Error");
+            }
+            HintCount++;
         }
     }
 

@@ -70,7 +70,6 @@ public class Maze : MonoBehaviour
         Generate();
         DrawMap();
         GetComponent<NavMeshSurface>().BuildNavMesh();
-        StartCoroutine(manager.InstantiatingEnemy(5));
         // StartCoroutine(DelayedNavMeshBuild(1.0f));
     }
 
@@ -149,7 +148,7 @@ public class Maze : MonoBehaviour
                     }
                     else if(Random.Range(0,100)<10)
                     {
-                        manager.InstantiateWeapons(x,z);
+                        manager.InstantiateReload(x,z);
                     }
                     else if (Random.Range(0,100)<25)
                     {

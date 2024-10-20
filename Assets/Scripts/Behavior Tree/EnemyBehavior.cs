@@ -33,6 +33,10 @@ public class EnemyBehavior : MonoBehaviour
     //Animation
     public Animator animator;
 
+    //Sound
+    int audioPlayed = 0;
+    public AudioSource audioSource;
+
     
     void Start()
     {
@@ -95,6 +99,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         if(canSeePlayer)
         {
+            
             agent.SetDestination(playerRef.transform.position);
             return Node.Status.RUNNING;
         }
@@ -105,6 +110,11 @@ public class EnemyBehavior : MonoBehaviour
     public Node.Status CanSeeTarget()
     {
         if(canSeePlayer){ 
+            if(audioPlayed==0)
+            {
+                audioSource.Play();
+                audioPlayed++;
+            }
             animator.SetTrigger("Run");
             return Node.Status.SUCCESS;
         }
@@ -159,3 +169,4 @@ public class EnemyBehavior : MonoBehaviour
 
 
 }
+

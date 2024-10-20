@@ -6,16 +6,29 @@ using UnityEngine.AI;
 
 public class SpawnManager : MonoBehaviour
 {
+    Vector3 enemyPosition = new Vector3(89.6f, 0, -100f);
     int mazeAreaMask;
     public Recursive obj;
     public GameObject WeaponPrefab;
-    public GameObject enemyPrefab;
+    public List<GameObject> enemyPrefab;
     public GameObject WayPointPrefab;
     public GameObject wallLamp;
     public Transform mazeParent;
     public Transform enemyCollection;
     public List<Vector3> waypointsList;
     public List<Vector3> weaponPosList;
+
+    private void Start() 
+    {
+        // Initialize the enemyPrefab list with actual instances at the start
+        for (int i = 0; i < enemyPrefab.Count; i++)
+        {
+            GameObject enemy = Instantiate(enemyPrefab[i],enemyPosition, Quaternion.identity, mazeParent.transform);
+            enemyPrefab[i] = enemy;  // Store the instantiated enemy in the list
+        }
+
+        StartCoroutine(InstantiatingEnemy());
+    }
 
 
 
@@ -53,17 +66,16 @@ public class SpawnManager : MonoBehaviour
     //     mazeParent.transform.localPosition = new Vector3(50.7f, 0f, -130.3f);
     // }
 
-    public IEnumerator InstantiatingEnemy(int numberOfEnemiesToSpawn)
+    public IEnumerator InstantiatingEnemy()
     {
+
         int enemiesSpawned = 0;
 
-        while (enemiesSpawned < numberOfEnemiesToSpawn)
+        while (enemiesSpawned < enemyPrefab.Count)
         {
             yield return new WaitForSeconds(2f); // Wait for 2 seconds before spawning the next enemy
 
-            Vector3 enemyPosition = new Vector3(89.6f, 0, -100f);
-
-            Instantiate(enemyPrefab, enemyPosition, Quaternion.identity, mazeParent.transform);
+            enemyPrefab[enemiesSpawned].transform.position = enemyPosition;
 
             enemiesSpawned++;
         }
@@ -94,23 +106,25 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    public void InstantiateWeapons(int i, int j)
+    public void InstantiateReload(int i, int j)
     {
         if (obj.map[i, j] == 0) 
         {
-            Vector3 weaponPosition = new Vector3(i * obj.scale, 2, j * obj.scale);
+            Vector3 boxPosition = new Vector3(i * obj.scale, 0.1f , j * obj.scale);
 
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(weaponPosition, out hit, 5f, NavMesh.AllAreas))
-            {
-                GameObject weaponInstance = Instantiate(WeaponPrefab, weaponPosition, Quaternion.identity, mazeParent.transform);
-                weaponInstance.transform.position = hit.position;
-                weaponPosList.Add(weaponPosition);
-            }
-            else
-            {
-                Debug.Log($"NavMesh.SamplePosition failed for position: {weaponPosition}");
-            }
+            GameObject boxInstance = Instantiate(WeaponPrefab, boxPosition, Quaternion.Euler(-90f,0f,0f), mazeParent.transform);
+
+            // NavMeshHit hit;
+            // if (NavMesh.SamplePosition(weaponPosition, out hit, 5f, NavMesh.AllAreas))
+            // {
+               
+            //     weaponInstance.transform.position = hit.position;
+            //     weaponPosList.Add(weaponPosition);
+            // }
+            // else
+            // {
+            //     Debug.Log($"NavMesh.SamplePosition failed for position: {weaponPosition}");
+            // }
         }
     }
 

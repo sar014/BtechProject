@@ -37,9 +37,11 @@ public class PlayerHealth : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.CompareTag("Enemy"))
         {
-            TakeDamage(10);
+            EnemyBehavior enemyBehavior = other.gameObject.GetComponent<EnemyBehavior>();
+            enemyBehavior.animator.SetTrigger("Attack");
+            TakeDamage(5);
         }
     }
 
