@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class mouseLook : MonoBehaviour
 {
-    public float mouseSensitivity = 100f;
+    public MouseSensitivity mouseSensitivity;
     public Transform playerBody;
 
     float xRotation = 0f;
     
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity.sensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity.sensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation,-90f,90f);

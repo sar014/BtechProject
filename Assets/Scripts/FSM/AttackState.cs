@@ -14,12 +14,8 @@ public class AttackState : State
     
     public override State RunCurrentState(FieldOfView fov)
     {
-        if(fov.canSeePlayer)
-        {
-            animator.SetTrigger("Attack");
-            return this;
-        }
-        else if(!fov.canSeePlayer)
+        animator.SetTrigger("Attack");
+        if(!fov.canSeePlayer || (Vector3.Distance(this.transform.position,stateManager.playerf.transform.position)>=3f))
         {
             animator.ResetTrigger("Attack");
             animator.SetTrigger("Run");

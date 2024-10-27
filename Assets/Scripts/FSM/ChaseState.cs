@@ -25,7 +25,13 @@ public class ChaseState : State
 
         if(Vector3.Distance(this.transform.position,stateManager.playerf.transform.position)<=3f)
         {
+            animator.ResetTrigger("Run");
             return attackState;
+        }
+        else if (fov.canSeePlayer)
+        {
+            fov.agent.SetDestination(stateManager.playerf.transform.position);
+            return this;
         }
         else if(!fov.canSeePlayer)
         {

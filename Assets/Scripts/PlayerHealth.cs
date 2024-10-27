@@ -43,6 +43,10 @@ public class PlayerHealth : MonoBehaviour
             enemyBehavior.animator.SetTrigger("Attack");
             TakeDamage(5);
         }
+        else if (other.gameObject.CompareTag("Mutant"))
+        {
+            TakeDamage(7);
+        }
     }
 
 }

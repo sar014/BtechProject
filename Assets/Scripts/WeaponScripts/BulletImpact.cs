@@ -10,25 +10,25 @@ public class BulletImpact : MonoBehaviour
         //At least one of the game objects involved must have a Rigidbody component.
     void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.tag == "Enemy"||other.gameObject.tag == "Mutant")
         {
             EnemyDamage damage = other.gameObject.GetComponent<EnemyDamage>();
-            CreateBulletImpactEffect(other);
+            // CreateBulletImpactEffect(other);
             damage.TakeDamage();
         }
     }
 
-    void CreateBulletImpactEffect(Collision objectWeHit)
-    {
-        ContactPoint contact = objectWeHit.contacts[0];
+    // void CreateBulletImpactEffect(Collision objectWeHit)
+    // {
+    //     ContactPoint contact = objectWeHit.contacts[0];
 
-        //Using Singleton (global reference) because the bullet itself is getting instantiated
-        GameObject hole = Instantiate(GlobalReferences.Instance.bulletImpact,
-                                    contact.point,
-                                    Quaternion.LookRotation(contact.normal));
+    //     //Using Singleton (global reference) because the bullet itself is getting instantiated
+    //     GameObject hole = Instantiate(GlobalReferences.Instance.bulletImpact,
+    //                                 contact.point,
+    //                                 Quaternion.LookRotation(contact.normal));
 
-        hole.transform.SetParent(objectWeHit.gameObject.transform);
-    }
+    //     hole.transform.SetParent(objectWeHit.gameObject.transform);
+    // }
 
 
 }

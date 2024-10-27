@@ -9,6 +9,9 @@ TagManager:
   - Entry
   - Enemy
   - Floor
+  - Gun
+  - Bullet
+  - Mutant
   layers:
   - Default
   - TransparentFX

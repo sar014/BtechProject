@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
-    float health,maxHealth = 5.0f;
+    float health;
+    public float maxHealth = 5.0f;
 
     [Tooltip("Accessing the Health Bar")][SerializeField]FloatingHealthBar healthBar;
     

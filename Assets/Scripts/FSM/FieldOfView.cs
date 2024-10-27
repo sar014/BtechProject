@@ -1,18 +1,45 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FieldOfView : MonoBehaviour
 {
+    public List<Vector3> WayPointList;
+    public NavMeshAgent agent;
     public bool canSeePlayer;  // Public so it can be accessed by states
     public LayerMask targetMask;
     public LayerMask obstructionMask;
     public float radius;
     [Range(0, 360)]
     public float angle;
+    public SpawnManager spawnManager;
 
     void Start()
     {
+        WayPointList = spawnManager.waypointsList;
+        agent = GetComponentInParent<NavMeshAgent>();
+        Patrol();
         StartCoroutine(FOVRoutine());
+
+    }
+
+    public void Patrol()
+    {
+        int WayPointIndex = UnityEngine.Random.Range(0, WayPointList.Count);
+        agent.SetDestination(WayPointList[WayPointIndex]);
+
+        StartCoroutine(RepeatPatrol(10f));
+    }
+    IEnumerator RepeatPatrol(float interval)
+    {
+        while (true)
+        {
+            int WayPointIndex = UnityEngine.Random.Range(0, WayPointList.Count);
+            agent.SetDestination(WayPointList[WayPointIndex]);
+
+            yield return new WaitForSeconds(interval);
+        }
     }
 
     private IEnumerator FOVRoutine()

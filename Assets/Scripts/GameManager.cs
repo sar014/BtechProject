@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
+
     public GameObject gameOverUI;
     public PlayerHealth playerHealth;
     public AudioSource audioSource;
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         audioSource = GetComponent<AudioSource>();
         audioSource.Play();
     }
@@ -35,6 +37,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         playerHealth.currentHealth=100;
         SceneManager.LoadScene(0);
+
+        
     }
 
 
