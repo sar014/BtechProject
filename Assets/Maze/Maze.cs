@@ -54,7 +54,6 @@ public class Maze : MonoBehaviour
                                             new MapLocation(0,-1) };
     public int width = 30; //x length
     public int depth = 30; //z length
-    public bool hasEntered = false;
     public byte[,] map;
     public int scale = 6;
     GameObject wall;

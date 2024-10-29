@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class TriggerDetected : MonoBehaviour
 {
-    Maze obj;
-    private void OnTriggerEnter(Collider other)
-    {
-        obj.hasEntered = true;
-        Debug.Log("Entered");
+    public bool hasEntered;
+    void OnTriggerEnter(Collider other) {
+        if(other.CompareTag("Player"))
+        {
+            hasEntered = true;
+        }
+        
     }
 }

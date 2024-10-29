@@ -4,9 +4,8 @@ using UnityEngine.AI;
 
 public class HighlightingPathway : MonoBehaviour
 {
+    public TriggerDetected trigger;
     public Vector3 target; 
-    //public GameObject Player;
-
     NavMeshAgent navMeshAgent;
     LineRenderer lineRenderer;
     bool isFinding = false;
@@ -29,24 +28,29 @@ public class HighlightingPathway : MonoBehaviour
     }
 
     void Update()
-   {
-        if(isFinding)
+    {
+        if (isFinding)
         {
-            time+=Time.deltaTime;
+            time += Time.deltaTime;
             // Debug.Log("Time = "+time);
-            if(time>=15f)
+            if (time >= 15f)
             {
                 lineRenderer.enabled = false;
                 isFinding = false;
                 time = 0f;
             }
-       }
+        }
+
+        if (Input.GetKeyDown(KeyCode.H) && trigger.hasEntered)
+        {
+            CalculateAndVisualizePath();
+        }
     }
 
 
     public void CalculateAndVisualizePath()
     {
-        if(HintCount<=3)
+        if(HintCount<=2)
         {
             lineRenderer.enabled = true;
             NavMeshPath path = new NavMeshPath();

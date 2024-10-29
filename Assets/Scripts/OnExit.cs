@@ -9,6 +9,8 @@ public class OnExit : MonoBehaviour
     void OnTriggerEnter(Collider other) {
         if(other.gameObject.CompareTag("Player"))
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             Debug.Log("You WIn");
             winMessage.SetActive(true);
         }

@@ -53,10 +53,6 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter(Collider other) 
     {
-        if(other.gameObject.name =="OpeningToMaze")
-        {
-            hint.gameObject.SetActive(true);
-        }
 
         if(other.gameObject.name =="Ground")
         {

@@ -25,12 +25,19 @@ public class PauseMenu : MonoBehaviour
 
     void PauseGame()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
     }
 
     public void ResumeGame()
     {
+        // Lock the cursor to the center of the screen
+        Cursor.lockState = CursorLockMode.Locked;
+        
+        // Hide the cursor
+        // Cursor.visible = false;
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
     }
